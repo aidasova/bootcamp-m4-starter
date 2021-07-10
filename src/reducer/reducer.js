@@ -23,21 +23,33 @@ function reducer(state = initialState, action) {
     //console.log(action)
    // console.log(state)
     if(action.type === add) {
+        if(state.cartMovie.find(item => item.imdbID === action.playload)) {
+            return state;
+        };
         let movieItem = state.movies.find(item => item.imdbID === action.playload);
         console.log(movieItem) // кликнутый товар попадаемый в корзину
+
         let updatedCart = [...state.cartMovie, movieItem]
         console.log(updatedCart) // массив из товаров плюс добавленный в корзине
-         let updatedState = {...state};
-         updatedState.cartMovie = updatedCart;
+
+        let updatedState = {...state};
+        updatedState.cartMovie = updatedCart;
+
         return updatedState; // корзина с фильмами
     } else if(action.type === remove) {
         let clone = state.cartMovie.filter((item) => { // все фильмы кроме удаленного
-        return item.imdbID !== action.playload 
+
+        return item.imdbID !== action.payloadRemove 
         });   
-        return ({ cartMovie: clone});
+
+        return ({ ...state, cartMovie: clone});
     } else if(action.type === search) {
-
-
+         let cloneFetch = action.payloadFetch
+         console.log(cloneFetch)
+         console.log(action)
+         console.log(state)
+        return ({ ...state, movies: cloneFetch})
+        
     }
     return state;
 }

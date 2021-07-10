@@ -9,7 +9,7 @@ class MovieItem extends Component {
         console.log(imdbID)    //id кликнутого на добавить фильм
         store.dispatch({
             type: add,
-            playload: imdbID
+            payload: imdbID
             
         })
     }

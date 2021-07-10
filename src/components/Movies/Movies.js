@@ -14,6 +14,14 @@ class Movies extends Component {
             movies: globalState.movies
         })
     }
+    componentDidMount() {
+        store.subscribe(() => {
+            const globalState = store.getState(); //получить данные из глобального состояния
+            this.setState({   //обновить локальное состояние
+                movies: globalState.movies
+            })
+        })
+    }
     render() { 
         return ( 
             <ul className="movies">

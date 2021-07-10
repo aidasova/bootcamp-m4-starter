@@ -22,14 +22,14 @@ class Favorites extends Component {
        // console.log(id)    //id кликнутого на фильм
         store.dispatch({
             type: remove,
-            playload: id
+            payloadRemove: id
             
         })
     }
     render() { 
         return (
             <div className="favorites">
-                <input value="Новый список" className="favorites__name" />
+                <input  className="favorites__name" />
                 <ul className="favorites__list">
                     {this.state.movies.map((item) => {
                         return <li key={item.imdbID}>{item.title} ({item.year}) 

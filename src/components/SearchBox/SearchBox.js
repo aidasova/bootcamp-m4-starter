@@ -25,7 +25,11 @@ class SearchBox extends Component {
            )
            .then((res) => res.json())
            .then((data) => {
-               this.setState(console.log(data))
+              // this.setState(console.log(data))
+              store.dispatch({
+                  type: search,
+                  payloadFetch: data.Search
+              })
            })
            .catch((err) => console.log(err));
         
