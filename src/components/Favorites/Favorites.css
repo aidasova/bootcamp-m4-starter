@@ -31,3 +31,16 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+.btn {
+    border: none;
+    border-radius: 10px;
+    background-color: #848a85;
+    padding: 5px 10px;
+    color: #FFEEDB;
+    font-size: 14px;
+    text-align: right;
+    margin: 5px;
+}
+.favorites__list li {
+    margin-top: 5px;
+}

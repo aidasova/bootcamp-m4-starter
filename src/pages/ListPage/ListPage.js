@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './ListPage.css';
 
 class ListPage extends Component {
+    // constructor(){
+    //     this.apiKey = ``
+    // }
     state = {
         movies: [
             { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
@@ -12,6 +15,7 @@ class ListPage extends Component {
         console.log(id);
         // TODO: запрос к сервер на получение списка
         // TODO: запросы к серверу по всем imdbID
+      
     }
     render() { 
         return (
