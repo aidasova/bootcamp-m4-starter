@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import './ListPage.css';
 
 class ListPage extends Component {
-    // constructor(){
-    //     this.apiKey = ``
-    // }
     state = {
         movies: [
             { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
@@ -25,7 +22,7 @@ class ListPage extends Component {
                     {this.state.movies.map((item) => {
                         return (
                             <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
+                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.Title} ({item.Year})</a>
                             </li>
                         );
                     })}

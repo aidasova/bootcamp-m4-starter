@@ -44,3 +44,8 @@
 .favorites__list li {
     margin-top: 5px;
 }
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

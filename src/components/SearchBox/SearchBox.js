@@ -7,10 +7,6 @@ class SearchBox extends Component {
     state = {
         searchLine: ''
     }
-    // componentDidMount() {
-    //     this.searchBoxSubmitHandler();
-    // }
-  
     searchLineChangeHandler = (e) => {
         this.setState({ searchLine: e.target.value });
         console.log(e.target.value)

@@ -1,4 +1,4 @@
-import {add, remove, search} from '../components/actions/CartActions'
+import {add, remove, search, save} from '../components/actions/CartActions'
 
 let initialState = {
     cartMovie: [], 
@@ -23,10 +23,10 @@ function reducer(state = initialState, action) {
     //console.log(action)
    // console.log(state)
     if(action.type === add) {
-        if(state.cartMovie.find(item => item.imdbID === action.playload)) {
+        if(state.cartMovie.find(item => item.imdbID === action.payload)) {
             return state;
         };
-        let movieItem = state.movies.find(item => item.imdbID === action.playload);
+        let movieItem = state.movies.find(item => item.imdbID === action.payload);
         console.log(movieItem) // кликнутый товар попадаемый в корзину
 
         let updatedCart = [...state.cartMovie, movieItem]
@@ -46,11 +46,10 @@ function reducer(state = initialState, action) {
     } else if(action.type === search) {
          let cloneFetch = action.payloadFetch
          console.log(cloneFetch)
-         console.log(action)
-         console.log(state)
         return ({ ...state, movies: cloneFetch})
-        
-    }
+    } else if (action.type === save) {
+        return {...state}
+     }
     return state;
 }
 export default reducer;

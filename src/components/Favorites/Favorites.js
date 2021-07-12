@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './Favorites.css';
 import store from '../../reducer/store';
-import {add, remove} from '../actions/CartActions'
+import {save, remove} from '../actions/CartActions';
+import { Link } from 'react-router-dom';
 
 class Favorites extends Component {
     state = {
-        title: 'Новый список',
+        title: '',
         movies: [
-           // { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-        ]
+           // { imdbID: 'tt0068646', Title: 'The Godfather', Year: 1972 }
+        ], 
+        showList: false
     }
     componentDidMount() {
         store.subscribe(() => {
@@ -23,22 +25,68 @@ class Favorites extends Component {
         store.dispatch({
             type: remove,
             payloadRemove: id
-            
         })
     }
+    saveHandler = (e) => { //поле ввода
+        this.setState({ title: e.target.value });
+        console.log(e.target.value)
+    }
+    buttonClick = (e) => {  //кнопка сохранить
+        e.preventDefault();
+        console.log(this.state)
+
+        const info =  this.state
+        
+        fetch (
+            `https://acb-api.algoritmika.org/api/movies/list `, {
+            method: 'POST', 
+            headers: {
+                'Content-type': 'application/json'
+            }, 
+            body: JSON.stringify(info)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            store.dispatch({
+                type: save,
+                payloadSave: data,
+                
+           })
+       console.log(data);
+       this.setState({showList: true});
+        })
+        }
+
     render() { 
+        const {title} = this.state;
         return (
             <div className="favorites">
-                <input  className="favorites__name" />
+                <input  className="favorites__name" 
+                    value={title}
+                    name="task"
+                    type="text"
+                    onChange={this.saveHandler}
+                />
                 <ul className="favorites__list">
                     {this.state.movies.map((item) => {
-                        return <li key={item.imdbID}>{item.title} ({item.year}) 
-                        <button type="button"
-                        className="btn"
-                        onClick={() => this.handleClose(item.imdbID)}>X</button></li>;
+                        return (
+                            <li className='flex' key={item.imdbID}>
+                                <span>{item.Title} ({item.Year}) </span>
+                                <span>
+                                    <button type="button"
+                                        className="btn"
+                                        onClick={() => this.handleClose(item.imdbID)}>X
+                                    </button>
+                                </span>
+                            </li>
+                        )
                     })}
                 </ul>
-                <button type="button" className="favorites__save">Сохранить список</button>
+                {this.state.showList
+                    ? <Link to='/list'  className="favorites__save_btn">Перейти к списку</Link>
+                    : <button type="button" className="favorites__save" onClick={this.buttonClick}>Сохранить список</button>
+                }
             </div>
         );
     }
