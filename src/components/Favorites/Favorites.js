@@ -84,7 +84,7 @@ class Favorites extends Component {
                     })}
                 </ul>
                 {this.state.showList
-                    ? <Link to='/list/:{this.state.data.id}'  className="favorites__save_btn">Перейти к списку</Link>
+                    ? <Link to={'/list/' + this.state.id}  className="favorites__save_btn">Перейти к списку</Link>
                     : <button type="button" className="favorites__save" onClick={this.buttonClick}>Сохранить список</button>
                 }
             </div>

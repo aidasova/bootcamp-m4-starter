@@ -4,7 +4,7 @@ import './ListPage.css';
 class ListPage extends Component {
     state = {
         movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
+            { title: 'The Godfather', Year: 1972, imdbID: 'tt0068646' }
         ]
     }
     componentDidMount() {
@@ -12,7 +12,16 @@ class ListPage extends Component {
         console.log(id);
         // TODO: запрос к сервер на получение списка
         // TODO: запросы к серверу по всем imdbID
-      
+        const getList = async (id) => {
+            if (id === 0) {
+                throw 'Invalid id';
+            }
+            const response = await fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`);
+            const data = await response.json();
+
+            return data;
+        }
+        getList().then().catch()
     }
     render() { 
         return (
