@@ -1,4 +1,4 @@
-import {add, remove, search, save} from '../components/actions/CartActions'
+import {add, remove, search, show} from '../components/actions/CartActions'
 
 let initialState = {
     cartMovie: [], 
@@ -47,9 +47,7 @@ function reducer(state = initialState, action) {
          let cloneFetch = action.payloadFetch
          console.log(cloneFetch)
         return ({ ...state, movies: cloneFetch})
-    } else if (action.type === save) {
-        return {...state}
-     }
+    }  
     return state;
 }
 export default reducer;
