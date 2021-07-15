@@ -9,19 +9,12 @@ let initialState = {
     //     year: 2017,
     //     poster: "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
 
-    // },
-    // {
-    //     imdbID: 'tt0068646',
-    //     title: "The Godfather",
-    //     year: 1972,
-    //     poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-
     // }
     ] 
 }
 function reducer(state = initialState, action) {
     //console.log(action)
-   // console.log(state)
+    // console.log(state)
     if(action.type === add) {
         if(state.cartMovie.find(item => item.imdbID === action.payload)) {
             return state;

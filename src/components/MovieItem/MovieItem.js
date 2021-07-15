@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
 import './MovieItem.css';
-import {add} from '../actions/CartActions'
+import { add } from '../actions/CartActions'
 
 
 class MovieItem extends Component {

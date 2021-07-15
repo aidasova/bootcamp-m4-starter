@@ -3,13 +3,12 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-.main-page__main-section {
-    padding-left: 40px;
+.main-page__main-section { 
     box-sizing: border-box;
-    width: 60%;
-    margin-top: 30px;
+    width: 60%;   
 }
 
 .main-page__search-box {
@@ -19,13 +18,22 @@
 .main-page__favorites {
     width: 35%;  
     min-width: 300px; 
-    padding-left: 40px;
 }
-@media (max-width: 870px) {
+@media (max-width: 900px) {
     .main-page__content {
         flex-direction: column-reverse;
+        width: 100%;
+        padding: 10px;
+        min-width: 450px;
     }
     .main-page__favorites, .main-page__main-section {
-        padding-left: 200px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+  }
+  @media (min-width: 900px) {
+    .main-page__content {
+        padding: 10px;
     }
   }

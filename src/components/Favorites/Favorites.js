@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Favorites.css';
 import store from '../../reducer/store';
-import {remove} from '../actions/CartActions';
+import { remove } from '../actions/CartActions';
 import { Link } from 'react-router-dom';
 
 class Favorites extends Component {
@@ -46,7 +46,8 @@ class Favorites extends Component {
                 'Content-type': 'application/json'
             }, 
             body: JSON.stringify(info)
-        })
+            }
+        )
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -55,14 +56,14 @@ class Favorites extends Component {
                 id: data.id
             });
         })
-    }
+        }
     
     render() { 
         const {title} = this.state;
         return (
             <div className="favorites">
                 <input  className="favorites__name" 
-                    value={title}
+                    value={this.state.title}
                     name="task"
                     type="text"
                     onChange={this.saveHandler}
@@ -75,7 +76,9 @@ class Favorites extends Component {
                                 <span>
                                     <button type="button"
                                         className="btn"
-                                        onClick={() => this.handleClose(item.imdbID)}>X
+                                        onClick={() => this.handleClose(item.imdbID)}
+                                    >
+                                        X
                                     </button>
                                 </span>
                             </li>
@@ -84,7 +87,7 @@ class Favorites extends Component {
                 </ul>
                 {this.state.showList
                     ? <Link to={'/list/' + this.state.id}  className="favorites__save_btn">Перейти к списку</Link>
-                    : <button type="button" className="favorites__save" onClick={this.buttonClick} disabled={!this.state.title}>Сохранить список</button>
+                    : <button type="button" className="favorites__save" onClick={this.buttonClick} disabled={!title}>Сохранить список</button>
                 }
             </div>
         );

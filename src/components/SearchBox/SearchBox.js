@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
-import {search} from '../actions/CartActions';
+import { search } from '../actions/CartActions';
 import store from '../../reducer/store';
 
 class SearchBox extends Component {
@@ -12,21 +12,19 @@ class SearchBox extends Component {
         console.log(e.target.value)
     }
     searchBoxSubmitHandler = (e) => {
-       e.preventDefault();
-       let input = e.target.choise.value
-       console.log(input)
+        e.preventDefault();
+        let input = e.target.choise.value
+        console.log(input)
      
-        fetch(
-            `http://www.omdbapi.com/?s=${input}&apikey=341e2618 `
-           )
+        fetch(`http://www.omdbapi.com/?s=${input}&apikey=341e2618 `)
            .then((res) => res.json())
            .then((data) => {
               // this.setState(console.log(data))
-              store.dispatch({
-                  type: search,
-                  payloadFetch: data.Search
-              })
-           })
+                store.dispatch({
+                    type: search,
+                    payloadFetch: data.Search
+                })
+            })
            .catch((err) => console.log(err));
         
        

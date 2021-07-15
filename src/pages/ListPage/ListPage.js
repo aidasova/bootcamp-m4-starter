@@ -7,40 +7,40 @@ class ListPage extends Component {
         movies: [
          //   { title: 'The Godfather', Year: 1972, imdbID: 'tt0068646' }
         ]
-
     }
     componentDidMount() {
         const id = this.props.match.params.id;
         console.log(id);
-  // TODO: запрос к серверу на получение списка
-     
+
+        // TODO: запрос к серверу на получение списка
         this.setState({loading: true})
             fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`)
-
-            .then((res) => res.json())
-            .then((data) => {
-            //    console.log(data.movies)
-            //    console.log(this.state)
-                let listMovies = [...this.state.movies];
-                listMovies.push(data.movies)
-            //    console.log(listMovies[0])
-                let list = listMovies[0]
-                let imdbIDItems = [];
-                for(let i=0; i < list.length; i++)  {
-                    imdbIDItems.push(list[i].imdbID)
-            //    console.log(imdbIDItems)
-                }      
-                imdbIDItems.map((item) => {
-                  let linkItem = item
-                  console.log(linkItem)
+                .then((res) => res.json())
+                .then((data) => {
+                    //    console.log(data.movies)
+                    //    console.log(this.state)
+                    let listMovies = [...this.state.movies];
+                    listMovies.push(data.movies)
+                    //    console.log(listMovies[0])
+                    let list = listMovies[0]
+                    let imdbIDItems = [];
+                        for(let i=0; i < list.length; i++)  {
+                        imdbIDItems.push(list[i].imdbID)
+                        //    console.log(imdbIDItems)
+                        }      
+                    imdbIDItems.map((item) => {
+                        let linkItem = item
+                        console.log(linkItem)
                 
-                  getLink(linkItem)
-                })  
+                        getLink(linkItem)
+                    })  
 
-        this.setState({loading: false,
-                        movies: list});
-        })
-           .catch((err) => console.log(err));
+                    this.setState({
+                        loading: false,
+                        movies: list
+                    });
+                })
+                .catch((err) => console.log(err));
       
         // TODO: запросы к серверу по всем imdbID
         const getLink = async (linkItem) => {
@@ -52,7 +52,6 @@ class ListPage extends Component {
    
     }
     render() { 
-
         return (
             <div className="list-page">
                 <h1 className="list-page__title">Мой список</h1>
