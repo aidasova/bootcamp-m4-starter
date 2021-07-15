@@ -2,12 +2,14 @@
     padding: 42px calc(50% - 500px);
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .main-page__main-section {
     padding-left: 40px;
     box-sizing: border-box;
     width: 60%;
+    margin-top: 30px;
 }
 
 .main-page__search-box {
@@ -15,5 +17,15 @@
 }
 
 .main-page__favorites {
-    width: 35%;   
+    width: 35%;  
+    min-width: 300px; 
+    padding-left: 40px;
 }
+@media (max-width: 870px) {
+    .main-page__content {
+        flex-direction: column-reverse;
+    }
+    .main-page__favorites, .main-page__main-section {
+        padding-left: 200px;
+    }
+  }

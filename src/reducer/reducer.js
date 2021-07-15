@@ -1,4 +1,4 @@
-import {add, remove, search, show} from '../components/actions/CartActions'
+import {add, remove, search} from '../components/actions/CartActions'
 
 let initialState = {
     cartMovie: [], 
@@ -17,7 +17,7 @@ let initialState = {
     //     poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
 
     // }
-] // фильмы 
+    ] 
 }
 function reducer(state = initialState, action) {
     //console.log(action)

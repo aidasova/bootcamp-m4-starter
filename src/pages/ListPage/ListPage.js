@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './ListPage.css';
-import store from '../../reducer/store';
-import { Link } from 'react-router-dom';
 
 class ListPage extends Component {
     state = {
@@ -16,41 +14,43 @@ class ListPage extends Component {
         console.log(id);
   // TODO: запрос к серверу на получение списка
      
-       this.setState({loading: true})
+        this.setState({loading: true})
             fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`)
 
             .then((res) => res.json())
             .then((data) => {
-               console.log(data.movies)
-               console.log(this.state)
-               let listMovies = [...this.state.movies];
-               listMovies.push(data.movies)
-               console.log(listMovies[0])
-               let list = listMovies[0]
-
+            //    console.log(data.movies)
+            //    console.log(this.state)
+                let listMovies = [...this.state.movies];
+                listMovies.push(data.movies)
+            //    console.log(listMovies[0])
+                let list = listMovies[0]
                 let imdbIDItems = [];
                 for(let i=0; i < list.length; i++)  {
                     imdbIDItems.push(list[i].imdbID)
-                    console.log(imdbIDItems)
+            //    console.log(imdbIDItems)
                 }      
-      
-            getLink(imdbIDItems)
+                imdbIDItems.map((item) => {
+                  let linkItem = item
+                  console.log(linkItem)
+                
+                  getLink(linkItem)
+                })  
 
-            this.setState({loading: false,
-                             movies: list
-                         });
-            })
+        this.setState({loading: false,
+                        movies: list});
+        })
            .catch((err) => console.log(err));
       
         // TODO: запросы к серверу по всем imdbID
-  
-        const getLink = async (imdbIDItems) => {
-            const response = await fetch(`http://www.omdbapi.com/?i=${imdbIDItems}&apikey=341e2618`);
+        const getLink = async (linkItem) => {
+            const response = await fetch(`http://www.omdbapi.com/?i=${linkItem}&apikey=341e2618`);
             const data = await response.json();
             console.log(data)
+            return data
         }
    
-        }
+    }
     render() { 
 
         return (
@@ -60,7 +60,7 @@ class ListPage extends Component {
                     {this.state.movies.map((item) => {
                         return (
                             <li key={item.imdbID}>
-                                 <a href="https://www.imdb.com/title/tt0068646" target="_blank">{item.Title} ({item.Year})</a> 
+                                 <a href={"https://www.imdb.com/title/" + item.imdbID} target="_blank">{item.Title} ({item.Year})</a> 
                             </li>
                         );
                     })}

@@ -10,3 +10,8 @@
 .list-page ul li {
     font-size: 18px;
 }
+@media (max-width: 870px) {
+    .list-page {
+        padding: 42px;
+    }
+  }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Favorites.css';
 import store from '../../reducer/store';
-import {save, remove} from '../actions/CartActions';
+import {remove} from '../actions/CartActions';
 import { Link } from 'react-router-dom';
 
 class Favorites extends Component {
@@ -29,7 +29,9 @@ class Favorites extends Component {
         })
     }
     saveHandler = (e) => { //поле ввода
-        this.setState({ title: e.target.value });
+        this.setState({ 
+            title: e.target.value,
+        });
         console.log(e.target.value)
     }
     buttonClick = (e) => {  //кнопка сохранить
@@ -82,7 +84,7 @@ class Favorites extends Component {
                 </ul>
                 {this.state.showList
                     ? <Link to={'/list/' + this.state.id}  className="favorites__save_btn">Перейти к списку</Link>
-                    : <button type="button" className="favorites__save" onClick={this.buttonClick}>Сохранить список</button>
+                    : <button type="button" className="favorites__save" onClick={this.buttonClick} disabled={!this.state.title}>Сохранить список</button>
                 }
             </div>
         );
