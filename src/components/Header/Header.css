@@ -7,5 +7,14 @@
     font-family: 'Luckiest Guy', cursive;
     color: #FFEEDB;
     font-size: 45px;
-    margin-left: 40px;
 }
+@media (max-width: 900px) {
+    .header__title {
+        padding: 20px;
+    }
+}
+@media (min-width: 900px) and (max-width: 1100px) {
+    .header {
+        padding: 20px;
+    }
+  }
