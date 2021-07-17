@@ -14,8 +14,28 @@ class SearchBox extends Component {
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
         let input = e.target.choise.value
+
+        let transliterate = (input, engToRus) => {
+            let eng = "shh sh ch cz yu ya yo zh `` y' e` a b v g d e z i j k l m n o p r s t u f x `".split(/ +/g),
+                rus = "щ   ш  ч  ц  ю  я  ё  ж  ъ  ы  э  а б в г д е з и й к л м н о п р с т у ф х ь".split(/ +/g)
+            for (let x = 0; x < rus.length; x++) {
+              input = input.split(engToRus ? eng[x] : rus[x]).join(engToRus ? rus[x] : eng[x])
+              input = input.split(engToRus ? eng[x].toUpperCase() : rus[x].toUpperCase()).join(engToRus ? rus[x].toUpperCase() : eng[x].toUpperCase())
+            }
+            return input
+          }
+
+        if (e.target.choise.value) {
+            input = transliterate(input)
+          }
+          else {
+              input = transliterate(input, true)
+        }
         console.log(input)
-     
+        
+ 
+          
+
         fetch(`http://www.omdbapi.com/?s=${input}&apikey=341e2618 `)
            .then((res) => res.json())
            .then((data) => {
@@ -26,8 +46,7 @@ class SearchBox extends Component {
                 })
             })
            .catch((err) => console.log(err));
-        
-       
+          
     }
     render() {
         const { searchLine } = this.state;
@@ -42,6 +61,7 @@ class SearchBox extends Component {
                             name="choise"
                             type="text"
                             className="search-box__form-input"
+                            pattern="[a-zA-Z]{3,30}"
                             placeholder="Например, Shawshank Redemption"
                             onChange={this.searchLineChangeHandler}
                         />
