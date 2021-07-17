@@ -66,6 +66,7 @@ class Favorites extends Component {
                     value={this.state.title}
                     name="task"
                     type="text"
+                    placeholder="Введите название списка"
                     onChange={this.saveHandler}
                 />
                 <ul className="favorites__list">

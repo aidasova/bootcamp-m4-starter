@@ -24,7 +24,8 @@
         flex-direction: column-reverse;
         width: 100%;
         padding: 10px;
-        min-width: 450px;
+        box-sizing: border-box;
+        max-width: 450px;
     }
     .main-page__favorites, .main-page__main-section {
         width: 100%;
